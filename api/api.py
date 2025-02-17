@@ -53,7 +53,3 @@ def get_instagram_video():
     
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
-
-# This ensures Vercel properly detects the Flask app
-def handler(event, context):
-    return app(event, context)
