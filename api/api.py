@@ -1,8 +1,20 @@
 from flask import Flask, request, jsonify
 import instaloader
 import requests
+import socks
+import socket
 
 app = Flask(__name__)
+
+# Proxy configuration
+username = "09850858-zone-custom-sessid-WHWt6XsG"
+password = "AvBblLxb"
+ip = "us.922s5.net"
+port = 6300
+
+# Set up the proxy for requests
+socks.set_default_proxy(socks.SOCKS5, ip, port, username=username, password=password)
+socket.socket = socks.socksocket
 
 def clean_instagram_url(url: str) -> str:
     """Cleans Instagram URL by removing tracking parameters and replacing 'reel' with 'p'."""
@@ -56,4 +68,3 @@ def get_instagram_video():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
